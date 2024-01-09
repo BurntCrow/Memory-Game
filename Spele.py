@@ -1,3 +1,4 @@
+from distutils.cmd import Command
 from tkinter import*
 from PIL import ImageTk, Image
 import random
@@ -28,7 +29,7 @@ def btnClick(btn,number):
     if btn["image"]=="pyimages" and count<2:
         btn["image"]==ImageList[number]
         count+=1
-        answers.append[number]
+        answers.append(number)
         if len[answers]==2:
             if ImageList[answers[0]]==ImageList[number[1]]:
                 for key in answers_dict:
@@ -43,7 +44,7 @@ def btnClick(btn,number):
                     answers=[]
                     answers_dict={}
                 
-
+    return 0
 
 btn0=Button(width=200, height=300, image=bgImg, command=lambda:btnClick(btn0,0))
 btn1=Button(width=200, height=300, image=bgImg, command=lambda:btnClick(btn1,1))
