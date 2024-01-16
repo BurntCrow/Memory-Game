@@ -80,4 +80,12 @@ def btnClick(btn,number):
     return 0
 
 
+def reset():
+    btn0.config(state=NORMAL)
+
+
+
+def infoLogs():
+        gw
+
 gameWindow.mainloop()
