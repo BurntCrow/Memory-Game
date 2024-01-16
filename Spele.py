@@ -1,3 +1,4 @@
+import time
 from distutils.cmd import Command
 from tkinter import*
 from PIL import ImageTk, Image
