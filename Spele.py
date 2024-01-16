@@ -48,12 +48,12 @@ btn10.grid(row=1, column=4)
 btn11.grid(row=1, column=5)
 
 count=0
-correctAnswer=0
+correctAnswers=0
 answers=[]
 answers_dict={}
 
 def btnClick(btn,number):
-    global count, correctAnswer, answers, answers_dict
+    global count, correctAnswers, answers, answers_dict
     if btn["image"]=="pyimage7" and count<2:
         btn["image"]=ImageList[number]
         count+=1
@@ -63,11 +63,11 @@ def btnClick(btn,number):
         if ImageList[answers[0]]==ImageList[number[1]]:
             for key in answers_dict:
                 key["state"]=DISABLED
-            correctAnswer+=2
-            if correctAnswer==2:
+            correctAnswers=+2
+            if correctAnswers==2:
 
                 messagebox.showinfo("Vienādi attēli")
-                correctAnswer=0
+                correctAnswers=0
                     
         else:
                 messagebox.showinfo("Nav vienādi attēli")
@@ -78,14 +78,5 @@ def btnClick(btn,number):
         answers_dict={}
                 
     return 0
-
-
-def reset():
-    btn0.config(state=NORMAL)
-
-
-
-def infoLogs():
-        gw
 
 gameWindow.mainloop()
