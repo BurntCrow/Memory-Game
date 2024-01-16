@@ -8,17 +8,18 @@ from tkinter import messagebox
 gameWindow=Tk()
 gameWindow.title("Vienādie attēli")
 
-myImg1=ImageTk.PhotoImage(Image.open("1.png"))
-myImg2=ImageTk.PhotoImage(Image.open("2.png"))
-myImg3=ImageTk.PhotoImage(Image.open("3.png"))
-myImg4=ImageTk.PhotoImage(Image.open("4.png"))
-myImg5=ImageTk.PhotoImage(Image.open("5.png"))
-myImg6=ImageTk.PhotoImage(Image.open("6.png"))
+myImg0=ImageTk.PhotoImage(Image.open("1.png"))
+myImg1=ImageTk.PhotoImage(Image.open("2.png"))
+myImg2=ImageTk.PhotoImage(Image.open("3.png"))
+myImg3=ImageTk.PhotoImage(Image.open("4.png"))
+myImg4=ImageTk.PhotoImage(Image.open("5.png"))
+myImg5=ImageTk.PhotoImage(Image.open("6.png"))
 
 bgImg=ImageTk.PhotoImage(Image.open("7.png"))
 
-ImageList=[myImg1,myImg1,myImg2,myImg2,myImg3,myImg3,myImg4,myImg4,myImg5,myImg5,myImg6,myImg6]
+ImageList=[myImg0,myImg0,myImg1,myImg1,myImg2,myImg2,myImg3,myImg3,myImg4,myImg4,myImg5,myImg5]
 random.shuffle(ImageList)
+myLabel=Label(image=myImg1)
 
 
 btn0=Button(width=200, height=300, image=bgImg, command=lambda:btnClick(btn0,0))
@@ -52,32 +53,36 @@ count=0
 correctAnswers=0
 answers=[]
 answers_dict={}
+answerCount=0
 
 def btnClick(btn,number):
-    global count, correctAnswers, answers, answers_dict
+    global count, correctAnswers, answers, answers_dict, answerCount
     if btn["image"]=="pyimage7" and count<2:
         btn["image"]=ImageList[number]
         count+=1
         answers.append(number)
         answers_dict[btn]=ImageList[number]
     if len(answers)==2:
-        if ImageList[answers[0]]==ImageList[number[1]]:
+        if ImageList[answers[0]]==ImageList[answers[1]]:
             for key in answers_dict:
                 key["state"]=DISABLED
             correctAnswers=+2
             if correctAnswers==2:
-
-                messagebox.showinfo("Vienādi attēli")
                 correctAnswers=0
+                answerCount+=1
                     
         else:
-                messagebox.showinfo("Nav vienādi attēli")
-                for key in answers_dict:
-                        key["image"]="pyImage7"
+            Tk.update(btn)
+            time.sleep(1.5)
+            for key in answers_dict:
+                key["image"]="pyImage7"
         count=0
         answers=[]
         answers_dict={}
-                
+    if answerCount==4:
+        messagebox.showinfo("You win!")
+        reset()   
+    
     return 0
 
 gameWindow.mainloop()
