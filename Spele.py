@@ -73,7 +73,7 @@ def btnClick(btn,number):
                     
         else:
             Tk.update(btn)
-            time.sleep(1.5)
+            time.sleep(0.5)
             for key in answers_dict:
                 key["image"]="pyImage7"
         count=0
@@ -84,5 +84,63 @@ def btnClick(btn,number):
         reset()   
     
     return 0
+
+
+def reset():
+    global count, correctAnswers, answers_dict, answerCount, answers
+    btn0.config(state=NORMAL)
+    btn1.config(state=NORMAL)
+    btn2.config(state=NORMAL)
+    btn3.config(state=NORMAL)
+    btn4.config(state=NORMAL)
+    btn5.config(state=NORMAL)
+    btn6.config(state=NORMAL)
+    btn7.config(state=NORMAL)
+    btn8.config(state=NORMAL)
+    btn9.config(state=NORMAL)
+    btn10.config(state=NORMAL)
+    btn11.config(state=NORMAL)
+
+    btn0["image"]="pyimage7"
+    btn1["image"]="pyimage7"
+    btn2["image"]="pyimage7"
+    btn3["image"]="pyimage7"
+    btn4["image"]="pyimage7"
+    btn5["image"]="pyimage7"
+    btn6["image"]="pyimage7"
+    btn7["image"]="pyimage7"
+    btn8["image"]="pyimage7"
+    btn9["image"]="pyimage7"
+    btn10["image"]="pyimage7"
+    btn11["image"]="pyimage7"
+
+    random.shuffle(ImageList)
+
+    count=0
+    correctAnswers=0
+    answers=[]
+    answers_dict={}
+    answerCount=0
+
+
+def infoLogs():
+        gameWindow=TopLevel()
+        gameWindow.Title("Info par spēli")
+        gameWindow.geometry("300x300")
+        apraksts=Label(gameWindow, text="Atmini 2 vienādus attēlus līdz visi ir uzminēti")
+        apraksts.grid(row=0, column=0)
+        return 0
+
+
+galvenaIzvelne=Menu(gameWindow)
+gameWindow.config(menu=galvenaIzvelne)
+
+options=Menu(galvenaIzvelne, tearoff=False)
+galvenaIzvelne.add_cascade(label="Options", menu=options)
+
+options.add_command(label="New Game", command=reset)
+options.add_command(label="Exit", command=gameWindow.quit)
+
+galvenaIzvelne.add_command(label="Info", command=infoLogs)
 
 gameWindow.mainloop()
