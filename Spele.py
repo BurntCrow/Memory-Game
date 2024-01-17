@@ -53,10 +53,14 @@ count=0
 correctAnswers=0
 answers=[]
 answers_dict={}
-answerCount=0
+answersCount=0
+
+
+
+
 
 def btnClick(btn,number):
-    global count, correctAnswers, answers, answers_dict, answerCount
+    global count, correctAnswers, answers, answers_dict, answersCount
     if btn["image"]=="pyimage7" and count<2:
         btn["image"]=ImageList[number]
         count+=1
@@ -69,19 +73,18 @@ def btnClick(btn,number):
             correctAnswers=+2
             if correctAnswers==2:
                 correctAnswers=0
-                answerCount+=1
-                    
+                answersCount+=1
         else:
             Tk.update(btn)
-            time.sleep(0.5)
+            time.sleep(0.2)
             for key in answers_dict:
-                key["image"]="pyImage7"
+                key["image"]="pyimage7"
         count=0
         answers=[]
         answers_dict={}
-    if answerCount==4:
-        messagebox.showinfo("You win!")
-        reset()   
+    if answersCount==6:
+        messagebox.showinfo(message="Tu uzvarēji!")
+        reset()
     
     return 0
 
@@ -124,12 +127,13 @@ def reset():
 
 
 def infoLogs():
-        gameWindow=TopLevel()
-        gameWindow.Title("Info par spēli")
+        gameWindow=Toplevel()
+        gameWindow.title("Info par spēli")
         gameWindow.geometry("300x300")
         apraksts=Label(gameWindow, text="Atmini 2 vienādus attēlus līdz visi ir uzminēti")
         apraksts.grid(row=0, column=0)
         return 0
+
 
 
 galvenaIzvelne=Menu(gameWindow)
